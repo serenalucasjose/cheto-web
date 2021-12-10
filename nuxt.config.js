@@ -26,6 +26,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/devices.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -55,5 +56,9 @@ export default {
 
   eslint: {
     fix: true
-  }
+  },
+
+  // router: {
+  //   base: '/<repository-name>/'
+  // }
 }
