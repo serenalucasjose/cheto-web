@@ -12,7 +12,13 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      // Facebook related tags
+      { hid: 'og:title', name: 'og:title', content: 'Cheto - Web Oficial' },
+      { hid: 'og:image', name: 'og:image', content: '/images/main-bg-1.jpg' },
+      { hid: 'og:site_name', name: 'og:name', content: 'Cheto - Web Oficial' },
+      // Twitter related tags
+      { hid: 't-type', name: 'twitter:card', content: 'summary_large_image' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -26,7 +32,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/devices.js', mode: 'client' }
+    { src: '~/plugins/devices.js', mode: 'client' },
+    { src: '~/plugins/random.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

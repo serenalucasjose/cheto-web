@@ -78,6 +78,9 @@ export default {
   mounted () {
     // Check device
     this.isMobile = this.$devices('isMobile')
+    // Get random BG
+    const option = [0, 0, 1, 1]
+    const imgUri = `/images/main-bg-${option[this.$randomBetween(0, 4)]}.jpg`
     /* eslint-disable */
     if (!this.isMobile) { // Animation only for desktop
       const s = (p) => {
@@ -86,7 +89,7 @@ export default {
         p.preload = () => {
           audio = p.loadSound('/audio/bg-music.mp3')
           demo7Shader = p.loadShader('/shaders/base.vert', '/shaders/d3.frag')
-          img = p.loadImage('/images/main-bg.jpg')
+          img = p.loadImage(imgUri)
         }
   
         p.setup = () => {
@@ -166,7 +169,7 @@ export default {
     background: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     .cheto-logo {
       &.left {
         display: none;
@@ -175,7 +178,7 @@ export default {
   }
 }
 .image-bg {
-  background-image: url('/images/main-bg.jpg');
+  background-image: url('/images/main-bg-1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
