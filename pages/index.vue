@@ -3,12 +3,18 @@
     <!-- Init controls -->
     <transition v-if="!isMobile" name="fade">
       <div v-show="!inProgress" class="intro-overlay bg-black absolute z-10 w-screen h-screen grid place-items-center place-content-center">
+        <!-- Play -->
         <button
+          v-show="setupDone"
           id="play-btn"
           class="text-white text-3xl"
         >
           <i class="fas fa-play" />
         </button>
+        <!-- Loading -->
+        <div v-if="!setupDone" class="fa-3x text-white">
+          <i class="fas fa-circle-notch fa-spin" />
+        </div>
       </div>
     </transition>
     <!-- Hero -->
@@ -58,7 +64,8 @@ export default {
       inProgress: false,
       p5Object: null,
       audio: null,
-      isMobile: null
+      isMobile: null,
+      setupDone: false
     }
   },
   head () {
@@ -95,6 +102,7 @@ export default {
         p.setup = () => {
           playBtn = document.querySelector('#play-btn')
           playBtn.addEventListener('click', () => {
+            if (this.inProgress) return false
             document.body.classList.add('start-anim')
             audio.loop()
             this.inProgress = true
@@ -116,6 +124,7 @@ export default {
           demo7Shader.setUniform('u_resolution', [p.windowWidth, p.windowHeight])
           demo7Shader.setUniform('u_texture', img)
           demo7Shader.setUniform('u_tResolution', [img.width, img.height])
+          this.setupDone = true
         }
   
         p.draw = () => {
@@ -176,7 +185,7 @@ export default {
       }
     }
   }
-  @media (min-width: 640px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) and (min-device-width: 319px) and (max-device-width: 960px) {
     .cheto-logo {
       &.left {
         display: none;
@@ -207,7 +216,7 @@ export default {
       }
     }
   }
-  @media (min-width: 640px) and (orientation: landscape) {
+  @media screen and (orientation: landscape) and (min-device-width: 319px) and (max-device-width: 960px) {
     .cheto-logo {
       &.right {
         position: relative;
