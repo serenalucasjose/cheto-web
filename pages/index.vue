@@ -91,15 +91,25 @@ export default {
     /* eslint-disable */
     if (!this.isMobile) { // Animation only for desktop
       const s = (p) => {
-        let demo7Shader, img, fft, audio, playBtn, toggleBtn;
+        let demo7Shader, img, fft, audio, playBtn, toggleBtn, imageModes, i, currMode
   
         p.preload = () => {
+          // Resources
           audio = p.loadSound('/audio/bg-music.mp3')
           demo7Shader = p.loadShader('/shaders/base.vert', '/shaders/d3.frag')
           img = p.loadImage(imgUri)
         }
   
         p.setup = () => {
+          // Image Mode
+          imageModes = [
+            p.CORNER,
+            p.CORNERS,
+            p.CENTER
+          ]
+          i = 0
+          currMode = imageModes[i]
+          // Handlers
           playBtn = document.querySelector('#play-btn')
           playBtn.addEventListener('click', () => {
             if (this.inProgress) return false
@@ -108,10 +118,13 @@ export default {
             this.inProgress = true
             this.audio = audio // Save reference to audio obj for later
           })
-  
+
+          p.imageMode(currMode)
+          p.image(img, 0, 0)
+          p.textureMode("normal")
           p.pixelDensity(1)
           p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL)
-  
+          
           toggleBtn = document.querySelector('#toggle-btn')
           toggleBtn.addEventListener('click', () => {
             toggleBtn.classList.toggle('toggle--on')
