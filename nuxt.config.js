@@ -19,10 +19,10 @@ export default {
       { hid: 'og:site_name', name: 'og:name', content: 'Cheto - Web Oficial' },
       { hid: 'og:description', name: 'og:description', content: 'Electronica / Indie / Pop' },
       // Twitter related tags
-      { hid: 't-type', name: 'twitter:card', content: 'summary_large_image' },
-      { hid: 'twitter:card', name: 'twitter:card', content: 'Banda de Electronica / Indie / Pop, conocenos.' },
-      { hid: 'twitter:image', name: 'twitter:image', content: '/images/main-bg-1.jpg' },
-      { hid: 'twitter:player', name: 'twitter:player', content: 'https://open.spotify.com/embed/artist/3Zm7zIp9kIF6qvVCwXy6Gb' }
+      { hid: 't-type', name: 'twitter:card', content: 'summary' },
+      { hid: 't-type', name: 'twitter:site', content: 'www.chetomusica.com' },
+      { hid: 't-type', name: 'twitter:creator', content: 'Cheto' },
+      { hid: 't-type', name: 'twitter:player', content: 'https://open.spotify.com/embed/artist/3Zm7zIp9kIF6qvVCwXy6Gb' }
 
     ],
     link: [

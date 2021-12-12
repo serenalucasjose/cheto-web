@@ -176,6 +176,13 @@ export default {
       }
     }
   }
+  @media (min-width: 640px) and (orientation: landscape) {
+    .cheto-logo {
+      &.left {
+        display: none;
+      }
+    }
+  }
 }
 .image-bg {
   background-image: url('/images/main-bg-1.jpg');
@@ -194,6 +201,19 @@ export default {
         width: 100%;
         height: auto;
         top: 0;
+        left: 0;
+        max-width: 250px;
+        margin: 0 auto;
+      }
+    }
+  }
+  @media (min-width: 640px) and (orientation: landscape) {
+    .cheto-logo {
+      &.right {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: calc(100% - 131px);
         left: 0;
         max-width: 250px;
         margin: 0 auto;
