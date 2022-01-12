@@ -1,5 +1,8 @@
 <template>
-  <div class="list-wrapper bg-white">
+  <div
+    v-if="events.length > 0"
+    class="list-wrapper bg-white"
+  >
     <h2 class="uppercase font-light mb-5">
       Proximas fechas:
     </h2>

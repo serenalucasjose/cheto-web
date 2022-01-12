@@ -38,7 +38,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/devices.js', mode: 'client' },
-    { src: '~/plugins/random.js', mode: 'client' }
+    { src: '~/plugins/random.js', mode: 'client' },
+    { src: '~/node_modules/vanilla-tilt/dist/vanilla-tilt.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
