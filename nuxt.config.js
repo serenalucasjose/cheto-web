@@ -53,6 +53,8 @@ export default {
     '@nuxtjs/tailwindcss'
   ],
 
+  ssr: false,
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -69,7 +71,7 @@ export default {
 
   eslint: {
     fix: true
-  },
+  }
 
   // router: {
   //   base: '/<repository-name>/'
