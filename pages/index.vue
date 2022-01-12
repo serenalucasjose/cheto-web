@@ -1,5 +1,5 @@
 <template>
-  <div class="main-page" @mousemove="showNews">
+  <div class="main-page">
     <!-- Init controls -->
     <transition v-if="!isMobile" name="fade">
       <div v-show="!inProgress" class="intro-overlay bg-black absolute z-10 w-screen h-screen grid place-items-center place-content-center">
@@ -19,7 +19,10 @@
     </transition>
     <!-- Hero -->
     <div class="hero-wrapper grid gap-0 h-screen sm:grid-cols-6">
-      <div class="info px-5 py-5 sm:col-span-2 flex flex-col justify-end">
+      <div
+        class="info px-5 py-5 sm:col-span-2 flex flex-col justify-end"
+        @mousemove="showNews"
+      >
         <!-- Logo -->
         <img
           class="cheto-logo left"
@@ -59,6 +62,7 @@
       ref="newsModal"
       title="Ultimos lanzamientos"
       :enable-mobile-fullscreen="true"
+      @close="userSawNews = true"
     >
       <div class="news-outer-wrapper">
         <div class="news-inner-wrapper">
@@ -102,8 +106,8 @@ export default {
       audio: null,
       isMobile: null,
       setupDone: false,
-      userEnteredAt: Date.now(),
-      newsThreshold: 10 * 1000,
+      userEnteredAt: null,
+      newsThreshold: 3 * 1000,
       userSawNews: false,
       surveillanceBg,
       withstandBg
@@ -115,13 +119,19 @@ export default {
     }
   },
   mounted () {
+    // Trakc user enter
+    this.userEnteredAt = Date.now()
+
     // Check device
     this.isMobile = this.$devices('isMobile')
+
     // Show presentation and news
     this.homePresentation()
+
     if (!this.isMobile) {
       this.initVanillaTilt()
     }
+
     this.showNews()
   },
   methods: {
@@ -216,9 +226,9 @@ export default {
       }
     },
     showNews() {
-      if (this.userSawNews || this.playing) return false
-
-      if (Date.now() > this.userEnteredAt + this.newsThreshold) {
+      if (this.userSawNews) return false
+      
+      if ((Date.now() > this.userEnteredAt + this.newsThreshold) || this.isMobile) {
         this.$refs.newsModal.open()
         this.userSawNews = true
       }
